@@ -1,0 +1,11 @@
+------FUNCTIONALITY--------
+Server opens a socket that waits for any clients wishing to connect and "broadcasts" the message in the file given. To run this compile and run server with arguments <port THAT'S NOT USED BY THE OS> <textFile>. Leave it running and then compile and run a client with an <ip> (ANY_ADDR would be 0.0.0.0) and the SAME <port>. 
+In my case I ran with <port> 9001, <ip> 0.0.0.0 and a text file full with one line copied ~500 times (to overfill both buffers in order to check them) and line saying "END" to disinguish last line.
+--------ERRORS-------------
+DISCLAIMER: There are a number of errors, I just list these that were enough to get me the functionality
+1. There was a missing closing bracket in server.c
+2. The array of arguments is one element larger than you might think. The program name itself is argv[0], so the first command-line argument is argv[1], and so on, and argc reflects the total number of items in the argv array including this argv[0]. Often we ignore argv[0] altogether.  ;)
+3. In client.c (I think there was similar in server.c) the bytes buffer is BUFFSIZE-1 and read is with parameter BUFFSIZE. It has to be the opposite - "char bytes[BUFSIZE]" declares array from 0 to BUFSIZE-1 inclusive and read reads inclusive, i.e. read(blah,blah,BUFSIZE) will read from 0 to BUFSIZE inclusive. (See the difference?)
+4. On success client.c returns 1? Seriously? Changed to return 0.
+5. In server.c w is never set to 0 again which prevents reading messages which are larger than the buffer.
+6. Client.c doesn't close the socket and server doesn't close "listening" socket. I know I put it outside of an endless loop, but I'd rather put it than leave it open.
