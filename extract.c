@@ -62,6 +62,7 @@ int main(int argc, char *argv[]){
             }
 
 
+            //read and write data
             currPos+=headers;
             fseek(inp,currPos,SEEK_SET);
             int n=fread(data,sizeof(char),dataSize,inp);
@@ -69,4 +70,6 @@ int main(int argc, char *argv[]){
             currPos+=dataSize;
         }
     }
+    fclose(inp);
+    fclose(outp);
 }
