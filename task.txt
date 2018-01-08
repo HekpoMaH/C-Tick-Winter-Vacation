@@ -1,0 +1,46 @@
+Exercise – Part 3
+Your  final  task  is  to  write  a  second  program  in  C  or  C++  to  remove  the  IP  and  TCP  headers
+from
+any
+log file conforming to the format described above and extract the data transmitted from
+machine  A  to  machine  B.  The  source  code  for  this  program  should  be  saved  in
+extract.c
+or
+extract.cc
+.  Your program must take two arguments on the command line, and open and read log
+data from the filename passed as the first argument, and write data into a file whose name will be
+passed as the second argument.  Your program should print an error message if a file with the name
+of the first argument does not exist.  Your program should overwrite the data in any file with the
+same name as the second argument, or create a file of this name if it does not exist.  For example,
+if an executable form of your program was called
+extract
+then the following execution
+./extract message1 message1.txt
+will extract the data held in
+message1
+and write it into the file
+message1.txt
+.
+Use your program to do the following:
+•
+Extract the data from
+message1
+and save this data into a new file called
+message1.txt
+.  View
+this image Does the message make sense?  (If not, you probably need to debug your code!)
+•
+Extract the data from
+message2
+and save this data into a new file called
+message2.jpg
+.  By
+using  a  web-browser  or  otherwise,  view  this  image.   What  does  the  image  show?   (If  you
+cannot view the image you probably need to debug your code!)
+•
+(Optional)
+Decipher the contents of
+message3
+and
+message4
+to claim the prize

@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
     {
         int n;
         char bytes[BUFSIZE];//3
-        while((n = read(sockfd,bytes,BUFSIZE-1)) > 0) {
+        while((n = read(sockfd,bytes,BUFSIZE)) > 0) {
             fwrite(bytes,n,sizeof(char),stdout);
         }
     }
