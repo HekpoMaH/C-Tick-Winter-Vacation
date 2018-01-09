@@ -30,10 +30,12 @@ int main(int argc, char *argv[]){
     }
     fread(TCPheader,sizeof(struct tcphdr),1,fp);
     fseek(fp,ntohs(header->ip_len),SEEK_SET);//skip to end of data for the next part
-    printf("%s %s %d %d %d",
-            inet_ntoa(header->ip_src),inet_ntoa(header->ip_dst),header->ip_hl,
-            ntohs(header->ip_len),
-            TCPheader->th_off);
+ 
+    char *src = malloc(sizeof(char)*(INET_ADDRSTRLEN));
+    inet_ntop(AF_INET, &(header->ip_src), src, INET_ADDRSTRLEN);
+    char *dst= malloc(sizeof(char)*(INET_ADDRSTRLEN));
+    inet_ntop(AF_INET, &(header->ip_dst), dst, INET_ADDRSTRLEN);
+    printf("%s %s %d %d %d",src,dst,header->ip_hl,ntohs(header->ip_len),TCPheader->th_off);
 
     int cnt=1;//count starts from 1 as we already had one
     while(!feof(fp)){
